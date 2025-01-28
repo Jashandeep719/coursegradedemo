@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Grade Average</title>
+</head>
+<body>
+
+<script>
+    let numOfCourses = prompt("How many courses did you finish?", "0");
+    numOfCourses = parseInt(numOfCourses);
+
+    if (isNaN(numOfCourses) || numOfCourses <= 0) {
+        document.write("<p>Invalid Input!</p>");
+    } else {
+        let courseMarks = [];
+        for (let i = 1; i <= numOfCourses; i++) {
+            let mark = prompt("Enter your mark for course " + i);
+            mark = parseFloat(mark);
+
+            if (!isNaN(mark) && mark >= 0 && mark <= 100) {
+                courseMarks.push(mark);
+            } else {
+                document.write("<p>Invalid mark for course " + i + "!</p>");
+                break;
+            }
+        }
+
+        if (courseMarks.length === numOfCourses) {
+            let total = 0;
+            for (let mark of courseMarks) {
+                total += mark;
+            }
+
+            let average = total / courseMarks.length;
+            let grade = '';
+
+            if (average >= 90) {
+                grade = 'A';
+            } else if (average >= 80) {
+                grade = 'B';
+            } else if (average >= 70) {
+                grade = 'C';
+            } else if (average >= 60) {
+                grade = 'D';
+            } else {
+                grade = 'F';
+            }
+
+            document.write("<p>Your average is: " + average.toFixed(2) + "</p>");
+            document.write("<p>Your grade is: " + grade + "</p>");
+        }
+    }
+</script>
+
+</body>
+</html>
